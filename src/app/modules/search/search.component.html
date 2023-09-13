@@ -1,0 +1,210 @@
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+<!-- BEGIN | Header -->
+<app-top-header></app-top-header>
+<!-- END | Header -->
+<div class="base-container_main" id="base-container">
+    <div class="modal_modal-container__wWp1v false"></div>
+    <div class="search_search" >
+        <div class="search_search__header-wrapper">
+            <div class="search_search__header-focus container internal">
+                <div class="search_search__search-box">
+                    <div class="search_search__header-arrow">
+                        <button (click)="goBack()"
+                            class="button-base_outer button-base_sm-32-16 button-base_transparent search_search__back-button"
+                            aria-label="Return to previous screen" tabindex="-1" type="button">
+                            <div class="button-base_inner"><svg width="24" height="16" viewBox="0 0 24 16"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.50229 0.787861L0.502285 6.78786C0.180906 7.10934 0.000366211 7.54529 0.000366211 7.99986C0.000366211 8.45443 0.180906 8.89039 0.502285 9.21186L6.50229 15.2119C6.8256 15.5241 7.25863 15.6969 7.70811 15.693C8.1576 15.6891 8.58756 15.5088 8.9054 15.191C9.22325 14.8731 9.40353 14.4432 9.40744 13.9937C9.41135 13.5442 9.23856 13.1112 8.92628 12.7879L6.58457 10.4461C6.52448 10.3862 6.48354 10.3098 6.46694 10.2265C6.45034 10.1433 6.45883 10.057 6.49133 9.97861C6.52383 9.9002 6.57888 9.83321 6.6495 9.78613C6.72012 9.73905 6.80312 9.714 6.888 9.71415H22.2857C22.7404 9.71415 23.1764 9.53354 23.4979 9.21204C23.8194 8.89055 24 8.45452 24 7.99986C24 7.5452 23.8194 7.10917 23.4979 6.78768C23.1764 6.46619 22.7404 6.28558 22.2857 6.28558H6.888C6.80312 6.28573 6.72012 6.26067 6.6495 6.21359C6.57888 6.16651 6.52383 6.09952 6.49133 6.02112C6.45883 5.94271 6.45034 5.85642 6.46694 5.77318C6.48354 5.68995 6.52448 5.61352 6.58457 5.55358L8.92628 3.21186C9.23856 2.88854 9.41135 2.45551 9.40744 2.00603C9.40353 1.55655 9.22325 1.12659 8.9054 0.808743C8.58756 0.490901 8.1576 0.310611 7.70811 0.306705C7.25863 0.3028 6.8256 0.47559 6.50229 0.787861Z">
+                                    </path>
+                                </svg>
+                                <span>
+
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="search_search__input-container"><input aria-label="Enter search query" type="text"
+                            value="" [ngModel]="searchString" (ngModelChange)="valueChanged($event)"><button
+                            type="button" class="search_search__clear-button" (click)="onClear()"> {{'HEADER.Clear' | translate}}</button><button
+                            type="button" (click)="onClear()" class="search_search__clear-button-mobile"><svg width="16"
+                                height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_238_13150)">
+                                    <path
+                                        d="M8 0C6.41775 0 4.87103 0.469192 3.55544 1.34824C2.23985 2.22729 1.21447 3.47672 0.608967 4.93853C0.00346627 6.40034 -0.15496 8.00888 0.153721 9.56072C0.462403 11.1126 1.22433 12.538 2.34315 13.6569C3.46197 14.7757 4.88743 15.5376 6.43928 15.8463C7.99113 16.155 9.59966 15.9965 11.0615 15.391C12.5233 14.7855 13.7727 13.7602 14.6518 12.4446C15.5308 11.129 16 9.58225 16 8C15.9975 5.87905 15.1538 3.84569 13.6541 2.34595C12.1543 0.846211 10.121 0.00254057 8 0V0ZM11.648 9.952C11.7659 10.0619 11.8605 10.1943 11.9261 10.3415C11.9916 10.4887 12.0269 10.6476 12.0298 10.8088C12.0326 10.9699 12.003 11.1299 11.9426 11.2794C11.8822 11.4288 11.7924 11.5645 11.6785 11.6785C11.5645 11.7924 11.4288 11.8822 11.2794 11.9426C11.1299 12.003 10.9699 12.0326 10.8088 12.0297C10.6476 12.0269 10.4887 11.9916 10.3415 11.9261C10.1943 11.8605 10.0619 11.7659 9.952 11.648L8 9.6976L6.048 11.648C5.82052 11.86 5.51965 11.9754 5.20877 11.9699C4.89789 11.9644 4.60127 11.8385 4.38141 11.6186C4.16155 11.3987 4.03561 11.1021 4.03012 10.7912C4.02464 10.4804 4.14004 10.1795 4.352 9.952L6.3024 8L4.352 6.048C4.14004 5.82052 4.02464 5.51965 4.03012 5.20876C4.03561 4.89788 4.16155 4.60127 4.38141 4.38141C4.60127 4.16154 4.89789 4.03561 5.20877 4.03012C5.51965 4.02464 5.82052 4.14003 6.048 4.352L8 6.3024L9.952 4.352C10.1795 4.14003 10.4804 4.02464 10.7912 4.03012C11.1021 4.03561 11.3987 4.16154 11.6186 4.38141C11.8385 4.60127 11.9644 4.89788 11.9699 5.20876C11.9754 5.51965 11.86 5.82052 11.648 6.048L9.6976 8L11.648 9.952Z"
+                                        fill="red"></path>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_238_13150">
+                                        <rect width="16" height="16" fill="white"></rect>
+                                    </clipPath>
+                                </defs>
+                            </svg></button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="channels.length == 0 && posters.length == 0 && searchString.length>2 && !loading">
+            <div class="search_message">
+                <div class="search_icon"><svg width="48" height="48" viewBox="0 0 48 48" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg" class="search_message__icon search_alert">
+                        <path
+                            d="M47.4579 40.5567L28.6007 2.84244C28.1739 1.98753 27.5172 1.26846 26.7045 0.765876C25.8918 0.263292 24.9551 -0.00292969 23.9996 -0.00292969C23.044 -0.00292969 22.1074 0.263292 21.2947 0.765876C20.4819 1.26846 19.8253 1.98753 19.3984 2.84244L0.541302 40.5567C0.14907 41.3409 -0.0361497 42.2124 0.00323951 43.0883C0.0426287 43.9643 0.305318 44.8156 0.766353 45.5614C1.22739 46.3073 1.87146 46.9228 2.63737 47.3497C3.40329 47.7765 4.26562 48.0004 5.14245 48.0002H42.8567C43.7336 48.0004 44.5959 47.7765 45.3618 47.3497C46.1277 46.9228 46.7718 46.3073 47.2328 45.5614C47.6939 44.8156 47.9566 43.9643 47.9959 43.0883C48.0353 42.2124 47.8501 41.3409 47.4579 40.5567ZM21.4282 17.143C21.4282 16.461 21.6991 15.807 22.1813 15.3247C22.6635 14.8425 23.3176 14.5716 23.9996 14.5716C24.6816 14.5716 25.3356 14.8425 25.8179 15.3247C26.3001 15.807 26.571 16.461 26.571 17.143V27.4287C26.571 28.1107 26.3001 28.7648 25.8179 29.247C25.3356 29.7292 24.6816 30.0002 23.9996 30.0002C23.3176 30.0002 22.6635 29.7292 22.1813 29.247C21.6991 28.7648 21.4282 28.1107 21.4282 27.4287V17.143ZM23.9996 41.143C23.3215 41.143 22.6586 40.9419 22.0948 40.5652C21.531 40.1885 21.0915 39.653 20.832 39.0265C20.5725 38.4 20.5046 37.7106 20.6369 37.0456C20.7692 36.3805 21.0957 35.7696 21.5752 35.2901C22.0547 34.8106 22.6656 34.484 23.3307 34.3517C23.9958 34.2195 24.6852 34.2873 25.3116 34.5469C25.9381 34.8064 26.4736 35.2458 26.8503 35.8096C27.2271 36.3735 27.4282 37.0363 27.4282 37.7144C27.4282 38.6238 27.0669 39.4958 26.424 40.1388C25.781 40.7818 24.9089 41.143 23.9996 41.143Z">
+                        </path>
+                    </svg></div>
+                <div class="search_message__text__alert">  {{ 'HEADER.No results found for'|translate }} {{searchString}}</div>
+            </div>
+        </div>
+        <!-- <div class="all-movies_movies_header">
+                    <h1>Channels</h1>
+                </div> -->
+        <div class="movie-items" *ngIf="channels.length>0" style="padding-top: 5px;">
+            <div class="row" >
+                <div class="col-md-12">
+                    <div class="title-hd">
+                        <h2 > {{ 'HEADER.TV Channels'|translate}}</h2>
+                        <!-- <a [routerLink] ="['/livetv']" class="viewall">See all <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+                    </div>
+                    <div>
+
+                        <div class="tab-content">
+                            <div id="tab1-h2" class="tab active">
+                                <div class="row">
+                                    <div class="slick-multiItem2 genre channel">
+                                        <p-carousel [value]="channels" [numVisible]="8" [numScroll]="8"
+                                            [circular]="false" #carousel [responsiveOptions]="posterResponsiveOptions">
+                                            <ng-template let-channel pTemplate="item">
+
+                                                <div class="swiper-slide" (click)="openHlsVideoDialog(channel)">
+                                                    <a class="content-card_content-card content-card_standard content-card_active"
+                                                        tabindex="0">
+                                                        <div class="content-card_content-card__beacon"></div>
+                                                        <div class="
+                                            content-card_content-card__poster-container
+                                            ">
+                                                            <div class="content-card_card_frame"></div>
+                                                            <div
+                                                                class="button_button_space button_roundedbutton_solid content-card_button   ">
+                                                                <button type="button"
+                                                                    class="button_button button_rounded button_solid content-card_button "
+                                                                    tabindex="-1"><svg width="16" height="16"
+                                                                        viewBox="0 0 27.963 24" fill="currentColor"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                                        </path>
+                                                                    </svg></button>
+                                                            </div>
+                                                            <img aria-hidden="true" width="220" height="110"
+                                                                [ngSrc]="channel.poster[0]">
+                                                        </div>
+                                                        <div aria-hidden="true"
+                                                            class="content-card_content-card__title">
+                                                            {{channel.name}}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </ng-template>
+                                        </p-carousel>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="movie-items" *ngIf="posters.length>0" style="padding-top: 5px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-hd">
+                        <h2 > {{ 'HEADER.Results'|translate}}</h2>
+                         
+                        <!-- <a [routerLink] ="['/livetv']" class="viewall">See all <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+                    </div>
+                    <hr style="background-color: beige;">
+                </div>
+                <div class="tab-content">
+
+                    <div id="tab1-h2" class="tab active">
+                        
+                        <div class="search_search__results__TYA_N">
+                        <div class="row">
+                            <div class="grid_cards-grid__orbrT">
+                                <div class="grid_item-grid__cXMeu" *ngFor="let poster of posters"
+                                    (click)="getDetails(poster)">
+                                    <a class="content-card_content-card content-card_standard content-card_active"
+                                        tabindex="0">
+                                        <div class="content-card_content-card__beacon"></div>
+                                        <div class="
+                                content-card_content-card__poster-container
+                                ">
+                                            <div class="content-card_card_frame"></div>
+                                            <div
+                                                class="button_button_space button_roundedbutton_solid content-card_button   ">
+                                                <button type="button"
+                                                    class="button_button button_rounded button_solid content-card_button "
+                                                    tabindex="-1"><svg width="16" height="16" viewBox="0 0 27.963 24"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                        </path>
+                                                    </svg></button>
+                                            </div>
+                                            <img aria-hidden="true" width="220" height="330" [ngSrc]="poster.poster!">
+                                        </div>
+                                        <div aria-hidden="true" class="content-card_content-card__title">
+                                            {{poster.title}}
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="search_search__results-container" *ngIf="channels.length > 0 && searchString.length>0">
+                    <div class="search_search__results">
+                        <div id="search_results">
+                            <div class="grid_cards-grid__orbrT">
+                                <div class="grid_item-grid__cXMeu" *ngFor="let channel of channels">
+                                    <a class="content-card_content-card content-card_standard content-card_active">
+                                        <div class="content-card_content-card__beacon"></div>
+                                        <div class="
+                        content-card_content-card__poster-container
+                        ">
+                                            <div class="content-card_card_frame"></div>
+                                            <div
+                                                class="button_button_space button_rounded button_solid content-card_button   ">
+                                                <button type="button"
+                                                    class="button_button button_rounded button_solid content-card_button "
+                                                    tabindex="-1"><svg width="16" height="16" viewBox="0 0 27.963 24"
+                                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                        </path>
+                                                    </svg></button>
+                                            </div>
+                                            <img aria-hidden="true" width="220" height="110" [ngSrc]="channel?.image!"
+                                                alt="{{channel.title}}">
+                                        </div>
+                                        <div aria-hidden="true" class="content-card_content-card__title">
+                                            {{channel.title}}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+    </div>
+
+</div>

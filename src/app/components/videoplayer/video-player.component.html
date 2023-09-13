@@ -1,0 +1,93 @@
+<div class="video-player-wrapper  landscape"  >
+  <svg width="24" height="24" (click)="handleIconClick()" class="CloseIcon" style="z-index: 1;" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+          d="M14.7274 12.3033C14.6875 12.2635 14.6558 12.2162 14.6342 12.1641C14.6126 12.112 14.6015 12.0562 14.6015 11.9999C14.6015 11.9435 14.6126 11.8877 14.6342 11.8356C14.6558 11.7835 14.6875 11.7362 14.7274 11.6964L22.6405 3.78329C22.8043 3.62515 22.9349 3.43599 23.0247 3.22684C23.1146 3.01769 23.1618 2.79274 23.1638 2.56512C23.1658 2.3375 23.1224 2.11176 23.0362 1.90108C22.95 1.6904 22.8227 1.499 22.6618 1.33804C22.5008 1.17708 22.3094 1.04979 22.0987 0.963594C21.8881 0.877399 21.6623 0.834024 21.4347 0.836002C21.2071 0.83798 20.9821 0.885271 20.773 0.975115C20.5638 1.06496 20.3747 1.19556 20.2165 1.35929L12.3034 9.27243C12.2636 9.31234 12.2163 9.34401 12.1642 9.36561C12.1122 9.38722 12.0563 9.39834 12 9.39834C11.9436 9.39834 11.8878 9.38722 11.8357 9.36561C11.7836 9.34401 11.7363 9.31234 11.6965 9.27243L3.78339 1.35929C3.46008 1.04702 3.02704 0.874227 2.57756 0.878133C2.12808 0.882039 1.69812 1.06233 1.38028 1.38017C1.06243 1.69801 0.882144 2.12798 0.878239 2.57746C0.874333 3.02694 1.04712 3.45997 1.35939 3.78329L9.27254 11.6964C9.31245 11.7362 9.34411 11.7835 9.36572 11.8356C9.38732 11.8877 9.39845 11.9435 9.39845 11.9999C9.39845 12.0562 9.38732 12.112 9.36572 12.1641C9.34411 12.2162 9.31245 12.2635 9.27254 12.3033L1.35939 20.2164C1.04712 20.5397 0.874333 20.9728 0.878239 21.4223C0.882144 21.8717 1.06243 22.3017 1.38028 22.6195C1.69812 22.9374 2.12808 23.1177 2.57756 23.1216C3.02704 23.1255 3.46008 22.9527 3.78339 22.6404L11.6965 14.7273C11.7363 14.6874 11.7836 14.6557 11.8357 14.6341C11.8878 14.6125 11.9436 14.6014 12 14.6014C12.0563 14.6014 12.1122 14.6125 12.1642 14.6341C12.2163 14.6557 12.2636 14.6874 12.3034 14.7273L20.2165 22.6404C20.5399 22.9527 20.9729 23.1255 21.4224 23.1216C21.8718 23.1177 22.3018 22.9374 22.6197 22.6195C22.9375 22.3017 23.1178 21.8717 23.1217 21.4223C23.1256 20.9728 22.9528 20.5397 22.6405 20.2164L14.7274 12.3033Z"
+          fill="#eaf6ff"></path>
+    </svg>
+  <vg-player *ngIf="videoType == 'MOVIES'" (onPlayerReady)="videoPlayerInit($event)" style="z-index: 0;">
+    
+    <vg-overlay-play></vg-overlay-play>
+    <vg-buffering></vg-buffering>
+    <vg-scrub-bar>
+      <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+      <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+    </vg-scrub-bar>
+    <vg-controls [vgAutohide]="true" [vgAutohideTime]="1.5">
+      <div class="dropdown-wrapper" *ngIf="showDropdown">
+        <select (change)="changeVideoUrl($any($event.target).value)" class="video-dropdown">
+          <option *ngFor="let video of videos" [value]="video.url">{{ video.name }}</option>
+        </select>
+      </div>      
+      <vg-play-pause></vg-play-pause>
+      <vg-playback-button></vg-playback-button>
+      <vg-time-display vgProperty="current" vgFormat="hh:mm:ss"></vg-time-display>
+      <vg-scrub-bar>
+        
+     </vg-scrub-bar>
+      <!-- <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display> -->
+      <vg-time-display vgProperty="total" vgFormat="hh:mm:ss"></vg-time-display>
+      <vg-track-selector></vg-track-selector>
+      <vg-mute></vg-mute>
+      <vg-volume ></vg-volume>
+      
+  
+      <vg-fullscreen></vg-fullscreen>
+    </vg-controls>
+    <!-- Preload
+. none – The video is not accessed until the user presses play, uses the least resources.
+. metadata – The browser accesses the video file to determine information such as running time, size and first frame, a suitable setting for most web pages.
+. auto - Tells the browser to get the whole file ready for playing, not a suitable setting for mobile devices, or for speed or size limited Internet connections, good for Intranets. Default setting.
+  -->
+    <video [vgMedia]="$any(media)" #media id="singleVideo" [vgHls]="videoUrl" preload="metadata" playsinline webkit-playsinline 
+       controlsList="nodownload" disablePictureInPicture buffer="5" type="video/webm">
+      
+
+      <ng-container *ngFor="let subtitle of subtitles">
+        <track [src]="subtitle.src" kind="subtitles" [srclang]="subtitle.srclang" [label]="subtitle.label" [default]="subtitle.default">
+      </ng-container>
+         
+    </video>
+    
+  </vg-player>
+ 
+
+  <button class="play-next-button" (click)="playNextEpisode()" style="z-index: 1;"*ngIf="toNextPlayEpisode == 'WEB SERIES'" [ngStyle]="{'background-image': 'url(' + imgUrlForNextEpisodeShow + ')'}">
+    <div class="loader">
+      <svg class="circle" viewBox="0 0 100 100">
+        <circle class="mask" cx="50" cy="50" r="30"></circle>
+        <path class="play-icon" d="M40 30 L70 50 L40 70 Z"></path>
+      </svg>
+    </div>
+    <div class="__underText_circle"><span class="text">Playing Next Episode</span></div>
+  </button>
+  
+  
+  
+  <vg-player *ngIf="videoType != 'MOVIES'" (onPlayerReady)="videoPlayerInit($event)" >
+
+    <vg-buffering></vg-buffering>
+
+    <vg-controls>
+     
+      
+      <vg-play-pause>
+        
+      </vg-play-pause>
+      <vg-playback-button></vg-playback-button>
+      <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+      <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+    
+
+      <vg-mute></vg-mute>
+   
+
+      <vg-fullscreen></vg-fullscreen>
+      
+    </vg-controls>
+    <video [vgMedia]="$any(media)" [vgHls]="videoUrl" #media id="singleVideo" preload="metadata" playsinline
+      webkit-playsinline autoplay>
+    </video>
+  </vg-player>
+  
+</div>

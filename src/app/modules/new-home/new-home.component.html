@@ -1,0 +1,227 @@
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+<!-- BEGIN | Header -->
+<app-top-header *ngIf="slides.length>0"></app-top-header>
+<!-- END | Header -->
+
+
+<div id="__next" *ngIf="slides.length>0">
+    <p-carousel class="carousel" [value]="features" [numVisible]="1" [numScroll]="1"
+        [responsiveOptions]="bannerResponsiveOptions" [autoplayInterval]="10000" [circular]="true">
+        <ng-template let-banner pTemplate="banner">
+            <div class="slider sliderv2"
+                [style.background-image]="'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(' + banner.banner + ')'">
+
+
+                <div class="container" style="width:100%;padding: 0px 50px;">
+                    <div class="row">
+                        <div class="movie-item">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                    <div class="title-in">
+                                        <h1><a href="#">{{banner.feature_title }}</a></h1>
+
+                                        <div class="mv-details">
+                                            <!--  -->
+                                            <ul class="mv-infor">
+                                                <li> <span *ngFor="let category of banner.categories; let last = last;">
+                                                        {{ category?.name || '' }}{{ last ? '': ' . '}}</span></li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="hero_hero__collapsible-container__qG_Y_">
+
+                                            <div style="display: flex;">
+                                                <div class="button_button_space__CaJR3 button_rounded__Aad7d button_solid__hfP17 hero_watch-now-mobile__r827P hero_play-icon-margin__8dd3M   ">
+                                                    <button type="button"
+                                                    (click)="openVideoDialog(banner)" class="button_button__SRc2Y button_rounded__Aad7d button_solid__hfP17 hero_watch-now-mobile__r827P hero_play-icon-margin__8dd3M   "
+                                                        aria-label="Taboo, Watch S1:E1, S1:E1 | Episode 1"><svg
+                                                            width="16" height="16" viewBox="0 0 27.963 24"
+                                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                            </path>
+                                                        </svg> 
+                                                    </button></div>
+                                                <a (click)="openVideoDialog(banner)" class="redbtn"
+                                                    tabindex="0" style="margin-right:5px;">
+                                                    <svg style="margin-right:5px;" xmlns="http://www.w3.org/2000/svg"
+                                                        class="icon icon-tabler icon-tabler-player-play-filled"
+                                                        width="20" height="20" viewBox="0 0 24 24" stroke-width="2"
+                                                        stroke="currentColor" fill="none" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none">
+                                                        </path>
+                                                        <path
+                                                            d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z"
+                                                            stroke-width="0" fill="currentColor"></path>
+                                                    </svg> <span >{{banner?.poster?.type == 'movie' &&
+                                                    banner?.poster?.sources.length == 0 ? "Watch Trailer": 'HEADER.Watch
+                                                    Now' | translate}} </span> </a>
+                                                <a (click)="getDetails(banner)" class="blackbtn"
+                                                    tabindex="0">
+                                                    <span  [ngClass]="{'truncated-text': switchlang !== 'en'}"> {{ 'HEADER.More Info' | translate}} </span>
+                                                    </a>
+                                            </div>
+                                            <br>
+                                            <div class="poster_description">
+                                                <p>{{banner.poster.description}}</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </ng-template>
+    </p-carousel>
+
+</div>
+
+<div class="movie-items" *ngIf="slides.length>0" style="padding-top: 5px;">
+
+    <div class="row" style="margin:0;">
+        <div class="col-md-12">
+            <div class="title-hd">
+                <h2 style="margin-left:30px;">{{'HEADER.TV CHANNELS' | translate}}</h2>
+              </div>
+
+            <div>
+
+                <div class="tab-content">
+                    <div id="tab1-h2" class="tab active">
+                        <div class="row">
+                            <div class="slick-multiItem2 genre ">
+                                <p-carousel [value]="channels" [numVisible]="8" [numScroll]="8" [circular]="false"
+                                    #carousel [responsiveOptions]="posterResponsiveOptions" [showNavigators]="!isMobile" [showIndicators]="!isMobile">
+                                    <ng-template let-channel pTemplate="item">
+                                        <!-- <div class="slide-it">
+                                            <div class="movie-item-channel movie-item">
+                                                <div class="mv-img">
+                                                    <img [ngSrc]="channel.image" alt={{channel.name}} width="221"
+                                                        height="110">
+                                                </div>
+                                                <div class="hvr-inner">
+                                                    <a href="#"> <i class="fa fa-play"></i> </a>
+                                                </div>
+                                            </div>
+                                            <div class="title-x">
+                                                <h6><a href="#">{{ channel.title }}</a></h6>
+                                            </div>
+                                        </div> -->
+                                        <div class="swiper-slide channel" (click)="openHlsVideoDialog(channel)">
+                                            <a class="content-card_content-card content-card_standard content-card_active"
+                                                aria-label="Search and Rescue" tabindex="0">
+                                                <div class="content-card_content-card__beacon"></div>
+                                                <div class="
+                                content-card_content-card__poster-container
+                                ">
+                                                    <div class="content-card_card_frame"></div>
+                                                    <div
+                                                        class="button_button_space button_roundedbutton_solid content-card_button   ">
+                                                        <button type="button"
+                                                            class="button_button button_rounded button_solid content-card_button "
+                                                            tabindex="-1"><svg width="16" height="16"
+                                                                viewBox="0 0 27.963 24" fill="currentColor"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                                </path>
+                                                            </svg></button>
+                                                    </div>
+                                                    <img aria-hidden="true" width="220" height="110"
+                                                        [ngSrc]="channel.poster[0]" style="max-height:110px">
+                                                </div>
+                                                <div aria-hidden="true" class="content-card_content-card__title">
+                                                    {{channel.name}}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+<div class="movie-items" *ngFor="let slide of slides ">
+    <div class="row" style="margin:0;">
+        <div class="col-md-12">
+            <div class="title-hd">
+                <h2 style="margin-left:30px;">{{slide.name}}</h2>
+                <!-- <a [routerLink] ="['/movie-list/genre', genre.id]" class="viewall">See all <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a> -->
+            </div>
+            <div>
+
+                <div class="tab-content">
+                    <div id="tab1-h2" class="tab active">
+                        <div class="row">
+                            <div class="slick-multiItem2 genre">
+                                <p-carousel [value]="slide?.posters!" [numVisible]="8" [numScroll]="9"
+                                    [circular]="false" [showIndicators]="isMobile?false:slide.posters?.length!>7"
+                                    [showNavigators]="isMobile?false:slide.posters?.length!>7"
+                                    [responsiveOptions]="posterResponsiveOptions">
+                                    <ng-template let-poster pTemplate="item">
+
+
+                                        <div class="swiper-slide" (click)="getDetails(poster)">
+                                            <a class="content-card_content-card content-card_standard content-card_active"
+                                                aria-label="Search and Rescue" tabindex="0">
+                                                <div class="content-card_content-card__beacon"></div>
+                                                <div class="
+                                content-card_content-card__poster-container
+                                ">
+                                                    <div class="content-card_card_frame"></div>
+                                                    <div
+                                                        class="button_button_space button_roundedbutton_solid content-card_button   ">
+                                                        <button type="button"
+                                                            class="button_button button_rounded button_solid content-card_button "
+                                                            tabindex="-1"><svg width="16" height="16"
+                                                                viewBox="0 0 27.963 24" fill="currentColor"
+                                                                xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                                </path>
+                                                            </svg></button>
+                                                    </div>
+                                                    <img aria-hidden="true" width="220" height="330"
+                                                        [ngSrc]="poster.poster">
+                                                </div>
+                                                <div aria-hidden="true" class="content-card_content-card__title">
+                                                    {{poster.title}}
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

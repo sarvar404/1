@@ -1,0 +1,46 @@
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+mat-form-field mat-label {
+    @apply text-white bg-gray-800 px-2.5 py-0;
+}
+mat-form-field label.mdc-floating-label span.mat-mdc-form-field-required-marker {
+    @apply text-white;
+}
+mat-form-field mat-icon {
+    @apply text-white;
+}
+input#username , input#password{
+    @apply text-[white];
+}
+::ng-deep  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input{
+    @apply text-white;
+}
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch{
+    @apply border-r-[rgba(0,0,0,0)] border-r border-solid;
+}
+button[mat-raised-button]{
+    $large-size-button: 50px;
+    $large-size-icon: 32px;
+}
+button[mat-raised-button].icon-button-login {
+    @apply w-[$large-size-button] h-[$large-size-button] leading-[$large-size-button];
+}
+button[mat-raised-button].icon-button-login .mat-icon {
+    @apply text-[$large-size-icon] w-[$large-size-icon] h-[$large-size-icon] leading-[$large-size-icon];
+}
+button[mat-raised-button].icon-button-login .mat-button-ripple {
+    @apply text-[inherit] w-[inherit] h-[inherit] leading-[inherit] pl-[50px] pr-[74px];
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch{
+    @apply border-[rgb(207_207_207_/_90%)];
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing{
+    @apply border-[rgb(207_207_207_/_90%)];
+}
+.mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading{
+    @apply border-[rgb(207_207_207_/_90%)];
+}
+
+ 
+ 

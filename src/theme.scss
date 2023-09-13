@@ -1,0 +1,50 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+body {
+  @apply bg-black m-0;
+  font-family: Roboto, Arial, sans-serif;
+  // background-color: rgb(31 41 55);
+  --scrollbar-track: transparent !important;
+  --scrollbar-thumb: #dc2626 !important;
+}
+.progress-spinner {
+  @apply fixed z-[999] h-[2em] w-[2em] m-auto inset-0;
+  overflow: show;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  @apply hidden;
+}
+.p-carousel .p-carousel-content .p-carousel-prev, .p-carousel .p-carousel-content .p-carousel-next{
+  @apply hidden;
+}
+.p-carousel .p-carousel-indicators .p-carousel-indicator button{
+  @apply w-[0.8rem] h-[0.8rem] rounded-[50%];
+}
+.p-carousel .p-carousel-indicators {
+  @apply pl-4 pr-20 py-4;
+}
+.p-carousel-indicators{
+  @apply absolute right-[50px] bottom-[25px];
+}
+
+@media  (max-width: 480px) {
+    //On later realease of PrimeNG, this can be done programmatically with [showIndicators | showNavigators]="false"
+    .p-carousel .p-carousel-indicators {
+    @apply hidden;
+}
+.p-carousel-next, .p-carousel-prev {
+    @apply hidden;
+}
+ 
+}
+
+// --- Custom theme -- //
+
+

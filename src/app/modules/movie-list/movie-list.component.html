@@ -1,0 +1,143 @@
+<div class="progress-spinner" *ngIf="loading || dataloading">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+<!-- BEGIN | Header -->
+<app-top-header *ngIf="!loading"></app-top-header>
+<!-- END | Header -->
+<div class="container internal">
+    <div class="all-movies_movies">
+
+        <div class="all-movies_movies_genres" *ngIf="!loading">
+
+            <aside class="genre-submenu_genre_submenu" #aside>
+                <div class="genre-submenu_genre_submenu_inner">
+                    <div class="genre-submenu_genre_submenu_scrollable">
+
+                        <div class="genre-submenu_genre_item" (click)="onCategoryClick(category)"
+                            [ngClass]="category._id == selectedCategory._id ? 'genre-submenu_selected' : ''"
+                            *ngFor="let category of categories;">
+                            <span>{{category.name}}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+        <div class="all-movies_movies_page" *ngIf="!loading">
+            <div class="all-movies_movies_header">
+                <h1>{{selectedCategory.name}}</h1>
+
+
+                <div class="all-movies_mobile_genres__nGIlH">
+                    <div
+                        class="button_button_space__CaJR3 button_primary__V6ee0 button_transparent__FM9QF    button_icon--right__4Nqeq">
+                        <button type="button_"
+                            class="button_button__SRc2Y button_primary__V6ee0 button_transparent__FM9QF    button_icon--right__4Nqeq"
+                            data-toggle="modal" data-target="#exampleModal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.534028 5.85348C0.855505 5.5321 1.29146 5.35156 1.74603 5.35156C2.2006 5.35156 2.63655 5.5321 2.95803 5.85348L11.7283 14.6186C11.7681 14.6585 11.8154 14.6902 11.8675 14.7118C11.9196 14.7334 11.9754 14.7445 12.0317 14.7445C12.0881 14.7445 12.1439 14.7334 12.196 14.7118C12.2481 14.6902 12.2954 14.6585 12.3352 14.6186L21.1055 5.85348C21.4312 5.55766 21.8583 5.39844 22.2982 5.4088C22.7382 5.41917 23.1573 5.59831 23.4688 5.90915C23.7803 6.21998 23.9603 6.6387 23.9716 7.07861C23.9829 7.51852 23.8246 7.94593 23.5295 8.27234L13.8506 17.9512C13.6118 18.1901 13.3283 18.3797 13.0162 18.509C12.7041 18.6384 12.3696 18.7049 12.0317 18.7049C11.6939 18.7049 11.3594 18.6384 11.0473 18.509C10.7352 18.3797 10.4517 18.1901 10.2129 17.9512L0.534028 8.27234C0.214219 7.95107 0.0346736 7.51622 0.0346736 7.06291C0.0346736 6.6096 0.214219 6.17475 0.534028 5.85348V5.85348Z"
+                                    fill="currentColor"></path>
+                            </svg>
+                           <span style=" white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">  {{'HEADER.Select Category' | translate}} </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="browse-grid_browse-grid">
+                    <div class="no-results-container" *ngIf="paginatedPosters.length == 0 && !dataloading">
+
+                        <p> {{'HEADER.Sorry, No Records Found !' |translate}}</p>
+
+                    </div>
+                    <ng-container *ngFor="let posterGroup of paginatedPosters; let i = index;">
+                        <div class="grid_cards-grid__orbrT">
+                            <div class="grid_item-grid__cXMeu" *ngFor="let poster of posterGroup"
+                                (click)="getDetails(poster)">
+                                <a class="content-card_content-card content-card_standard content-card_active"
+                                    aria-label="Search and Rescue" tabindex="0">
+                                    <div class="content-card_content-card__beacon"></div>
+                                    <div class="
+                            content-card_content-card__poster-container
+                            ">
+                                        <div class="content-card_card_frame"></div>
+                                        <div
+                                            class="button_button_space button_roundedbutton_solid content-card_button   ">
+                                            <button type="button"
+                                                class="button_button button_rounded button_solid content-card_button "
+                                                tabindex="-1"><svg width="16" height="16" viewBox="0 0 27.963 24"
+                                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                    </path>
+                                                </svg></button>
+                                        </div>
+                                        <img aria-hidden="true" width="220" height="330" [ngSrc]="poster.poster"
+                                            alt="{{poster.title}}">
+                                    </div>
+                                    <div aria-hidden="true" class="content-card_content-card__title">{{poster.title}}
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="separator-grid_separator_grid">
+                            <div class="separator-grid_line"></div>
+                            <div class="separator-grid_page_number">  {{'HEADER.Page'| translate}} {{i+1}}</div>
+                            <div class="separator-grid_line"></div>
+                        </div>
+                    </ng-container>
+                    <div class="progress-container" *ngIf="paginationLoading">
+                        <p-progressSpinner styleClass="w-2rem h-2rem" strokeWidth="2" fill="var(--surface-ground)"
+                            animationDuration=".5s"></p-progressSpinner>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- select category dialog -->
+<div class="modal fade" id="exampleModal" #myModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="background-color: black;text-decoration: #eaf6ff;">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-body">
+           
+
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" data-dismiss="modal" aria-label="Close"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M14.7274 12.3033C14.6875 12.2635 14.6558 12.2162 14.6342 12.1641C14.6126 12.112 14.6015 12.0562 14.6015 11.9999C14.6015 11.9435 14.6126 11.8877 14.6342 11.8356C14.6558 11.7835 14.6875 11.7362 14.7274 11.6964L22.6405 3.78329C22.8043 3.62515 22.9349 3.43599 23.0247 3.22684C23.1146 3.01769 23.1618 2.79274 23.1638 2.56512C23.1658 2.3375 23.1224 2.11176 23.0362 1.90108C22.95 1.6904 22.8227 1.499 22.6618 1.33804C22.5008 1.17708 22.3094 1.04979 22.0987 0.963594C21.8881 0.877399 21.6623 0.834024 21.4347 0.836002C21.2071 0.83798 20.9821 0.885271 20.773 0.975115C20.5638 1.06496 20.3747 1.19556 20.2165 1.35929L12.3034 9.27243C12.2636 9.31234 12.2163 9.34401 12.1642 9.36561C12.1122 9.38722 12.0563 9.39834 12 9.39834C11.9436 9.39834 11.8878 9.38722 11.8357 9.36561C11.7836 9.34401 11.7363 9.31234 11.6965 9.27243L3.78339 1.35929C3.46008 1.04702 3.02704 0.874227 2.57756 0.878133C2.12808 0.882039 1.69812 1.06233 1.38028 1.38017C1.06243 1.69801 0.882144 2.12798 0.878239 2.57746C0.874333 3.02694 1.04712 3.45997 1.35939 3.78329L9.27254 11.6964C9.31245 11.7362 9.34411 11.7835 9.36572 11.8356C9.38732 11.8877 9.39845 11.9435 9.39845 11.9999C9.39845 12.0562 9.38732 12.112 9.36572 12.1641C9.34411 12.2162 9.31245 12.2635 9.27254 12.3033L1.35939 20.2164C1.04712 20.5397 0.874333 20.9728 0.878239 21.4223C0.882144 21.8717 1.06243 22.3017 1.38028 22.6195C1.69812 22.9374 2.12808 23.1177 2.57756 23.1216C3.02704 23.1255 3.46008 22.9527 3.78339 22.6404L11.6965 14.7273C11.7363 14.6874 11.7836 14.6557 11.8357 14.6341C11.8878 14.6125 11.9436 14.6014 12 14.6014C12.0563 14.6014 12.1122 14.6125 12.1642 14.6341C12.2163 14.6557 12.2636 14.6874 12.3034 14.7273L20.2165 22.6404C20.5399 22.9527 20.9729 23.1255 21.4224 23.1216C21.8718 23.1177 22.3018 22.9374 22.6197 22.6195C22.9375 22.3017 23.1178 21.8717 23.1217 21.4223C23.1256 20.9728 22.9528 20.5397 22.6405 20.2164L14.7274 12.3033Z"
+                    fill="#eaf6ff"></path>
+            </svg>
+            <br>
+          
+            <span style="color: #f1dac4; font-size: 24px;margin-top: 10px;line-height: 60px; padding-top: 10px;" > {{'HEADER.Select Category'|translate}}</span>
+            <br><br>
+            
+            
+            <aside class="genre-submenu_genre_submenu" #aside>
+                <div class="genre-submenu_genre_submenu_inner">
+                    <div class="genre-submenu_genre_submenu_scrollable">
+
+                        <div class="genre-submenu_genre_item" (click)="onCategoryClick(category)" 
+                            [ngClass]="category._id == selectedCategory._id ? 'genre-submenu_selected' : ''"
+                            *ngFor="let category of categories;" >
+                            <span>{{category.name}}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </aside>
+            
+        </div>
+
+    </div>
+</div>

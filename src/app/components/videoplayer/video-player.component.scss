@@ -1,0 +1,500 @@
+.video-player-wrapper {
+  // overflow: hidden;
+  position: relative;
+  // width: 640px; 
+  // height: 360px;
+}
+
+.play-next-button {
+  position: absolute;
+  bottom: 60px;
+  right: 0px;
+  width: 20%;
+  height: 148px;
+  padding: 10px;
+  // background-image: url('https://picsum.photos/100/100');
+  background-size: cover;
+  background-position: center;
+  filter: blur(0px);
+  backdrop-filter: blur(8px);
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+
+}
+
+.play-next-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Adjust transparency as needed */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  /* Adjust z-index as needed */
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+}
+
+.circle {
+  width: 90%;
+  height: 90%;
+  stroke: transparent;
+  /* Set the stroke color to transparent */
+  fill: transparent;
+  /* Set the fill color to transparent */
+}
+
+.mask {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 10px;
+  transform-origin: center;
+  animation: loader-erase 10s linear;
+}
+
+
+
+@keyframes loader-erase {
+  0% {
+    stroke-dasharray: 0 188.5;
+  }
+
+  100% {
+    stroke-dasharray: 188.5 188.5;
+  }
+}
+
+.play-icon {
+  fill: rgba(255, 255, 255, 0.8);
+  /* Set the fill color to transparent white */
+  transform: translate(0%, 0%);
+}
+
+
+
+.text {
+  margin-top: 10px;
+  /* Adjust the margin as needed to create space between the circle and the text */
+  color: white;
+  /* Set the text color */
+  font-size: 12px;
+  /* Set the font size */
+}
+
+.__underText_circle {
+  margin-top: 50%;
+  background-color: #f27171;
+}
+
+//  HEAD
+//
+
+
+.video-player-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+// .dropdown-wrapper {
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+//   z-index: 2;
+// }
+
+.dropdown-wrapper {
+  position: absolute;
+  top: 16px;
+  margin-left: 170px;
+}
+
+.video-dropdown {
+  // width: 25px;
+  // height: 25px;
+  // background-image: url(https://img.icons8.com/windows/32/language.png);
+  // background-repeat: no-repeat;
+  // background-position: right -3px center;
+  width: 120px;
+  height: 26px;
+  font-size: 12px;
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (max-width :990px) and (orientation: portrait) {
+
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    // width: 215%;
+    width: calc(100% - 20px);
+    height: 100vw;
+    overflow-x: hidden;
+    // overflow-y: hidden;
+    position: fixed;
+    top: 100%;
+    left: -2%;
+    margin: 5px 5px 5px 5px;
+  }
+
+  vg-overlay-play .vg-overlay-play {
+    transition: all .5s;
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    color: #fff;
+    width: 90%;
+    height: 100%;
+    font-size: 80px;
+    filter: alpha(opacity=60);
+    opacity: .6;
+  }
+  .CloseIcon {
+    margin-top: 20px;
+    
+    position: absolute;
+    margin-left: 93%;
+  }
+}
+
+@media screen and (min-width: 375px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    // width: 215%;
+    // width:calc(100% - 20px) ;
+    width: calc(200% - 80px);
+    height: 100vw;
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+    position: absolute;
+    top: 100%;
+    left: -2%;
+  }
+
+  vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: calc(145% - 80px);
+    height: 100vw;
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+    position: fixed;
+    top: 100%;
+    left: -1%;
+  }
+
+  vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+
+  .video {
+    width: calc(145% - 80px);
+    /* Adjust the width for landscape mode */
+  }
+}
+.CloseIcon {
+  margin-top: 20px;
+  // margin-left: 10px;
+  margin-left: 92%;
+  position:absolute;
+  cursor:pointer;
+  float: right;
+}
+@media screen and (min-width: 414px) and (orientation: portrait) {
+  .landscape {
+
+    // transform: rotate(-90deg);
+    //  transform-origin: left top;
+
+    width: calc(703px + 180px);
+    height: 100vw;
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+    position: absolute;
+    top: 100%;
+    left: -1%;
+
+  }
+
+  vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+}
+
+@media screen and (min-width: 390px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+
+    width: calc(160% + 80px);
+    height: 100vw;
+    // overflow-x: hidden;
+    //  overflow-y: hidden;
+    position: absolute;
+    top: 100%;
+    left: -1%;
+
+  }
+
+  vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+}
+
+@media screen and (min-width: 360px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    // width: 215%;
+    // width:calc(100% - 20px) ;
+    width: calc(185% + 80px);
+    height: 100vw;
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+    position: absolute;
+    top: 100%;
+    left: -2%;
+  }
+
+  vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+
+}
+
+
+@media screen and (min-width: 280px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+
+
+    width: calc(160% + 80px);
+
+    height: 100vw;
+    overflow-x: hidden;
+    // overflow-y: hidden;
+    position: absolute;
+    top: 100%;
+    left: -2%;
+  }
+
+  vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+
+}
+
+
+
+@media screen and (max-width: 820px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+
+    width: calc(170% + 80px);
+    // width: 133%;
+    height: 100vw;
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+    position: absolute;
+    top: 100%;
+    left: -2%;
+  }
+
+  vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+
+}
+
+@media screen and (max-width: 912px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vmax !important;
+    // width: calc(125% + 75px);
+     height: 100vw;
+  
+    // position: absolute;
+    top: 100%;
+     left: auto;
+  }
+   vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+  .CloseIcon {
+    margin-top: 40px;
+    
+    position: absolute;
+    margin-left: 92%;
+  }
+  vg-player video {
+    width: 100%;
+    height: 100%;
+    
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.video-player-wrapper {
+  overflow: hidden;
+  position: absolute;
+  // width: 140vw;
+}
+vg-controls vg-scrub-bar {
+  height: 20px;
+}
+vg-scrub-bar .scrubBar {
+  
+
+  height: 60%;
+}
+}
+
+@media screen and (max-width: 540px) and (orientation: portrait) {
+  .landscape {
+
+    transform: rotate(-90deg);
+    transform-origin: left top;
+
+    // width: calc(170% + 80px);
+    //  width: 133%;
+    min-width: 102vh;
+    height: 100vw;
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+    position: absolute;
+    top: 100%;
+     left: auto;
+  }
+
+  .vg-controls {
+    position: absolute;
+    display: flex;
+    width: 83%;
+    height: 50px;
+    z-index: 300;
+    bottom: 0;
+    background-color: #00000080;
+    transition: bottom 1s;
+  }
+  .CloseIcon {
+    margin-top: 20px;
+    
+    position: absolute;
+    margin-left: 93%;
+  }
+  vg-player video {
+    width: 100%;
+    height: 100%;
+    
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.video-player-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 140vw;
+}
+div.subscription-dialog-class p.confirm-dialog {
+  font-size: 26px;
+  font-weight: 500;
+}
+vg-controls vg-scrub-bar {
+  height: 20px;
+}
+vg-scrub-bar .scrubBar {
+  
+
+  height: 60%;
+}
+}
+.custom-volume-control {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+}

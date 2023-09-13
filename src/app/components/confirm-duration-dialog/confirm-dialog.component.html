@@ -1,0 +1,12 @@
+<p mat-dialog-title style="color: wheat;font-size: 22px;font-weight: bold;text-align: center;padding-top: 22px;">{{data.title}}</p>
+    <hr style="background: #3a3939;" />
+    <div class="confirm-dialog-container" style="height: 5vh !important;">
+        <p class="confirm-dialog" display-2 style="font-size: 22px;">{{data.message}}</p>
+    </div>
+
+    <div mat-dialog-actions class="button-container">
+        
+        <button class="blackbtn" (click)="onDismiss()" style="justify-content: center;">Play From beginning</button>
+        <button class="redbtn" color="primary" (click)="onConfirm()" style="justify-content: center;margin-bottom: 40px;">Resume ({{data.duration}})</button>
+        
+    </div>

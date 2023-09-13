@@ -1,0 +1,13 @@
+<mat-card fxLayoutGap>
+
+    <p mat-dialog-title style="color: wheat;font-size: 20px;font-weight: bold;text-align: center;">{{data.title}}</p>
+    <hr style="background: #3a3939;" />
+    <div class="confirm-dialog-container">
+        <p class="confirm-dialog" display-2 [innerHTML]="data.message"></p>
+    </div>
+
+    <div mat-dialog-actions class="button-container">
+        <button class="blackbtn" (click)="onDismiss()">{{'HEADER.Cancel' | translate}}</button>
+        <button class="redbtn" color="primary" (click)="onConfirm()">{{'HEADER.Ok' | translate}}</button>
+    </div>
+</mat-card>

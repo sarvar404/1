@@ -1,0 +1,74 @@
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+<!-- BEGIN | Header -->
+<app-top-header *ngIf="!loading"></app-top-header>
+<!-- END | Header -->
+
+<div class="container internal">
+    <div class="all-movies_movies">
+        
+        <div class="all-movies_movies_page" *ngIf="!loading">
+            <div class="all-movies_movies_header" >
+                <h1>Adults</h1>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button"class="redbtn1" [ngClass]="{'redbtn': type === 'movie', 'blackbtn': type !== 'movie'}" 
+                     (click)="onchangeCategory('movie')"> {{'HEADER.MOVIES' | translate}}</button>
+                    <button type="button" class="blackbtn1" [ngClass]="{'redbtn': type === 'tvshows', 'blackbtn': type !== 'tvshows'}" 
+                    (click)="onchangeCategory('tvshows')" > {{'HEADER.TV SHOWS' | translate}}</button>
+                    
+                </div>
+            </div>
+            <div>
+                <div class="browse-grid_browse-grid" >
+                    <div class="no-results-container" *ngIf="paginatedPosters.length == 0 && !dataloading" style="overflow: hidden;">
+
+                        <p> {{'HEADER.Sorry, No Records Found !' |translate}}</p>
+
+                    </div>
+                    <ng-container *ngFor="let posterGroup of paginatedPosters; let i = index;">
+                        <div class="grid_cards-grid__orbrT">
+                            <div class="grid_item-grid__cXMeu" *ngFor="let poster of posterGroup" (click) = "getDetails(poster)">
+                                <a
+                                    class="content-card_content-card content-card_standard content-card_active"
+                                    aria-label="Search and Rescue" tabindex="0">
+                                    <div class="content-card_content-card__beacon"></div>
+                                    <div class="
+                            content-card_content-card__poster-container
+                            ">
+                                        <div class="content-card_card_frame"></div>
+                                        <div
+                                            class="button_button_space button_roundedbutton_solid content-card_button   ">
+                                            <button type="button" 
+                                                class="button_button button_rounded button_solid content-card_button "
+                                                tabindex="-1"><svg width="16" height="16" viewBox="0 0 27.963 24"
+                                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M 26.484 9.609 L 7.824 0.28 C 7.422 0.078 6.974 -0.017 6.524 0.003 C 6.074 0.023 5.637 0.157 5.254 0.394 C 4.871 0.631 4.554 0.962 4.335 1.355 C 4.116 1.749 4.001 2.192 4.002 2.642 L 4.002 21.358 C 4.001 21.808 4.116 22.251 4.335 22.645 C 4.554 23.038 4.871 23.369 5.254 23.606 C 5.637 23.843 6.074 23.977 6.524 23.997 C 6.974 24.017 7.422 23.922 7.824 23.72 L 26.484 14.4 C 26.928 14.178 27.302 13.837 27.563 13.414 C 27.825 12.992 27.963 12.505 27.963 12.009 C 27.963 11.512 27.825 11.025 27.563 10.603 C 27.302 10.18 26.928 9.839 26.484 9.617 L 26.484 9.609 Z">
+                                                    </path>
+                                                </svg></button>
+                                        </div>
+                                        <img aria-hidden="true" width="220" height="330" [ngSrc]="poster.poster"
+                                            alt="{{poster.title}}">
+                                    </div>
+                                    <div aria-hidden="true" class="content-card_content-card__title">{{poster.title}}
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="separator-grid_separator_grid" *ngIf="i>0">
+                            <div class="separator-grid_line"></div>
+                            <div class="separator-grid_page_number">Page {{i+1}}</div>
+                            <div class="separator-grid_line"></div>
+                        </div>
+                    </ng-container>
+                    
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
